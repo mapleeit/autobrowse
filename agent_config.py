@@ -1,12 +1,12 @@
 
 config = {
     "html_assistant": {
-        "model": "gpt-3.5-turbo-16k",
+        "model": "gpt-4o",
         "system_message": """You are a helpful AI Assistant. You will answer questions about HTML code. Respond only with HTML code from the HTML that is provided to you.
             (i.e. find the answer only in the HTML that you are given, don't make up imaginary HTML) """,
     },
     "code_generator": {
-        "model": "gpt-4",
+        "model": "gpt-4o",
         "system_message": """You are a Javascript engineer. You generate puppeteer.js javascript code to fulfill
             a given task that has to do with web browsing. The output of this agent should only be code (inside codeblocks). You may also be
             asked to correct code.  You should assume that the puppeteer environment has already been initialized with the following code:
@@ -24,7 +24,7 @@ config = {
     },
 
     "planner": {
-        "model": "gpt-4",
+        "model": "gpt-4o",
         "system_message": """You are a planner. You generate a plan to fulfill a web browsing task. This is done through the use of 2 other AI assistant agents. You can propose the usage of two functions : 1. ask_html_assistant (to ask questions about the current
             page in the browser - the result will be HTML code) Keep in mind that this agent is not able to make any modifications to the page, only respond to questions about it. 2. ask_code_generator (to generate and execute puppeteer.js code in the browser) .
             The code_generator does not have the HTML context, so you may need to provide it with the HTML from the html_assistant.

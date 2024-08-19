@@ -47,7 +47,7 @@ class AutoBrowse:
         self.init_code_generator(config["code_generator"].get("model"), config["code_generator"].get("system_message"), config["code_generator_user_proxy"].get("max_consecutive_auto_reply", 0), browser_console_uri= self.browser_console_uri)
         self.init_planner(config["planner"].get("model"), config["planner"].get("system_message"), config["planner_user_proxy"].get("max_consecutive_auto_reply", 0))
 
-    def init_planner(self, model_name = "gpt-4", system_message = "", max_consecutive_auto_reply = 0):
+    def init_planner(self, model_name = "gpt-4o", system_message = "", max_consecutive_auto_reply = 0):
         '''
         Initialize the planner agent, which generates a plan to fulfill a web browsing task.
         '''
@@ -122,7 +122,7 @@ class AutoBrowse:
             },
         )
 
-    def init_html_assistant(self, model_name = "gpt-3.5-turbo-16k", system_message = ""):
+    def init_html_assistant(self, model_name = "gpt-4o", system_message = ""):
         llm_config_list = autogen.config_list_from_json(
             "OAI_CONFIG_LIST",
             file_location=".",
@@ -146,7 +146,7 @@ class AutoBrowse:
             max_consecutive_auto_reply=0,
         )
 
-    def init_code_generator(self, model_name = "gpt-4", system_message = "", max_consecutive_auto_reply = 3, browser_console_uri = "ws://localhost:3000"):
+    def init_code_generator(self, model_name = "gpt-4o", system_message = "", max_consecutive_auto_reply = 3, browser_console_uri = "ws://localhost:3000"):
         llm_config_list = autogen.config_list_from_json(
             "OAI_CONFIG_LIST",
             file_location=".",

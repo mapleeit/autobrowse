@@ -5,12 +5,17 @@ import autogen
 
 from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import JinaEmbeddings
 from langchain.vectorstores import FAISS
 from autogen.agentchat.agent import Agent
 from token_count import num_tokens_from_string
 
 import websockets
+import json
+
+with open('.secret.json') as f:
+    secret_data = json.load(f)
+    jina_api_key = secret_data['jina_api_key']
 
 CHUNK_SIZE = 15_000 # use a chunk size of 15_000 tokens so that it comfortably fits in the OpenAI API limit of 16_000 tokens
 
@@ -27,7 +32,10 @@ def get_html_chunks(html: str):
 
 # TODO : avoid recomputing embeddings for html chunks that have not changes
 def build_vectorstore(html_chunks: [str]):
-    embeddings = OpenAIEmbeddings()
+    embeddings = JinaEmbeddings(
+        jina_api_key,
+        model_name="jina-embeddings-v2-base-en"
+    )
     vectorstore = FAISS.from_texts(texts=html_chunks, embedding=embeddings)
     return vectorstore
 

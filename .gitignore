@@ -13,3 +13,4 @@ __pycache__/*
 html/*
 dom/*
 OAI_CONFIG_LIST
+.secret.*
